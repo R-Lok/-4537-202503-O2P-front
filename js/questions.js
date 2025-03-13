@@ -8,7 +8,7 @@ class QuestionManager {
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
-        fetch("https://fortunedgalab.xyz/register/api/questions", {
+        fetch("https://fortunedgalab.xyz/api/questions", {
             method: 'POST'
         }
         )
@@ -130,7 +130,7 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers() {
 
-        fetch("https://fortunedgalab.xyz/register/api/persona", {
+        fetch("https://fortunedgalab.xyz/api/persona", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ class QuestionManager {
     // generate and image to go along with the persona
     async generateImage(userAnswers) {
         try {
-            const response = await fetch('https://fortunedgalab.xyz/register/api/image', {
+            const response = await fetch('https://fortunedgalab.xyz/api/image', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
