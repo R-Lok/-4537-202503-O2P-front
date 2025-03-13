@@ -1,3 +1,4 @@
+import isAuth from "isAuth";
 
 class QuestionManager {
     constructor() {
@@ -8,6 +9,9 @@ class QuestionManager {
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
+
+        isAuth();
+
         fetch("https://fortunedgalab.xyz/api/questions", {
             method: 'POST'
         }
