@@ -13,6 +13,10 @@ class QuestionManager {
         }
         )
             .then(response => {
+                console.log(`Status: ${response.status}`)
+                if (response.status == 401) {
+                    window.location.href = 'https://personamaker.netlify.app/login'
+                }
                 return response.json();
             })
             .then(data => {
