@@ -10,8 +10,10 @@
          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
          crossorigin="anonymous"></script>
  </head>
- <body class="vh-100 d-flex justify-content-center align-items-center">
-     <div id="form-container">
+ <body class="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="alert alert-danger d-none" id="alert" role="alert">
+    </div>
+    <div id="form-container">
          <form>
              <div class="form-group">
                  <label for="email">Email address</label>
@@ -25,5 +27,6 @@
              <button type="submit" id="submit-btn" class="mt-3 btn btn-primary">Submit</button>
          </form>
      </div>
+     <script src="./js/login.js"></script>
  </body>
  </html>
