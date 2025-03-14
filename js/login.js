@@ -27,7 +27,6 @@ async function login(email, password) {
 
         // TODO: check if auth from response. if not auth display message
         window.location.href = './index.html'
-
     } catch (e) {
         displayAlert("Error during login", true)
     }
