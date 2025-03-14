@@ -5,19 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <script defer src="js/nav.js"></script>
     <script defer src="js/getUsers.js"></script>
     <script defer src="js/index.js"></script>
 </head>
 
 <body>
-    <h1>Furrr-sona: Lets get furry. Rawr Rawr</h1>
-    <nav>
-        <a href="/">The Den</a>
-    </nav>
-    <h2>Little Fur Balls:</h2>
-    <ul id="user-list"></ul>
-
-    <button id="start-btn">Start Adventure</button>
+    <div id="nav"></div>
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="text-center">
+            <h3>
+                Persona Maker
+                <small class="text-muted">Discover your persona!</small>
+            </h3>
+            <button id="start-btn" class="btn btn-primary mt-3">Start Adventure</button>
+            <h5 class="mt-4">API Calls Remaining: </h5>
+            <ul id="user-list" class="list-unstyled"></ul>
+        </div>
+    </div>
 </body>
 
 </html>
