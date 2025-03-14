@@ -9,7 +9,7 @@ submit.addEventListener('click', (event) => {
 
 async function login(email, password) {
     try {
-        const res = await fetch("http://localhost:3000/login", {
+        const res = await fetch("https://fortunedgalab.xyz/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -25,10 +25,8 @@ async function login(email, password) {
             return
         }
 
-        setTimeout(() => {
-            // TODO: check if auth from response. if not auth display message
-            window.location.href = './index.html'
-        }, 5000)
+        // TODO: check if auth from response. if not auth display message
+        window.location.href = './index.html'
 
     } catch (e) {
         displayAlert("Error during login", true)
