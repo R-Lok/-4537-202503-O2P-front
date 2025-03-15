@@ -102,7 +102,7 @@ class QuestionManager {
             return response.json()})
         .then(data => {
             console.log(data);
-            this.displayImage(data.imageUrl);
+            // this.displayImage(data.imageUrl);
             this.displayPersona(data);
         })
         .catch(error => console.error(error));
