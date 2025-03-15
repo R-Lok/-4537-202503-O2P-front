@@ -28,7 +28,6 @@ async function logout() {
     }
     try {
         const res = await fetch("https://fortunedgalab.xyz/logout", req)
-
         if (!res.ok) {
             alert(`${res.status} ${res.statusText}`)
             return
