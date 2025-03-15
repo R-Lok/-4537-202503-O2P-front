@@ -37,6 +37,6 @@ async function logout() {
 
         window.location.href = './register.html'
     } catch (e) {
-        alert("Error during login")
+        alert("Error during logout")
     }
 }
