@@ -15,7 +15,8 @@ class QuestionManager {
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
         fetch("https://fortunedgalab.xyz/api/questions", {
-            method: 'POST'
+            method: 'POST',
+            credentials: "include"
         }
         )
             .then(response => {
