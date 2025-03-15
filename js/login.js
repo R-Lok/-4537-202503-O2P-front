@@ -17,7 +17,8 @@ async function login(email, password) {
             body: JSON.stringify({
                 "email": email,
                 "password": password
-            })
+            }),
+            credentials: "include"
         })
 
         if (!res.ok) {
