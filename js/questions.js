@@ -8,7 +8,7 @@ class QuestionManager {
     checkAuth(response) {
         console.log(`Status: ${response.status}`)
         if (response.status == 401) {
-            window.location.href = 'https://personamaker.netlify.app/login.html'
+            window.location.href = 'https://personamaker.netlify.app/login'
         }        
     }
 
@@ -16,7 +16,7 @@ class QuestionManager {
     getBatchOfQuestions() {
         fetch("https://fortunedgalab.xyz/api/questions", {
             method: 'POST',
-            credentials: "include"
+            credentials: 'include'
         }
         )
             .then(response => {
@@ -24,9 +24,10 @@ class QuestionManager {
                 return response.json();
             })
             .then(data => {
-                data = JSON.parse(data);
-                this.displayAllQuestions(data); // display all questions on DOM
-                this.populateAnswerArray(data);
+    
+                const message = JSON.parse(data.msg);
+                this.displayAllQuestions(message); // display all questions on DOM
+                this.populateAnswerArray(message);
             })
             .catch(error => {
                 console.log("error", error)
@@ -93,6 +94,7 @@ class QuestionManager {
 
         fetch("https://fortunedgalab.xyz/api/persona", {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -102,9 +104,8 @@ class QuestionManager {
             this.checkAuth(response);
             return response.json()})
         .then(data => {
-            console.log(data);
-            this.displayImage(data.imageUrl);
-            this.displayPersona(data);
+            this.displayImage(data.msg.imageUrl);
+            this.displayPersona(data.msg);
         })
         .catch(error => console.error(error));
     }
