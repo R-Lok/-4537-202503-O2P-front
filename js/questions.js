@@ -8,13 +8,13 @@ class QuestionManager {
     checkAuth(response) {
         console.log(`Status: ${response.status}`)
         if (response.status == 401) {
-            window.location.href = 'http://127.0.0.1:5500/login.html'
+            window.location.href = 'https://personamaker.netlify.app/login.html'
         }        
     }
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
-        fetch("http://localhost:3000/api/questions", {
+        fetch("https://fortunedgalab.xyz/api/questions", {
             method: 'POST'
         }
         )
@@ -90,7 +90,7 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers() {
 
-        fetch("http://localhost:3000/api/persona", {
+        fetch("https://fortunedgalab.xyz/api/persona", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

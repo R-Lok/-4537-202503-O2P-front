@@ -1,5 +1,5 @@
 
 document.getElementById('start-btn').addEventListener('click', function() {
-    window.location.href = 'http://127.0.0.1:5500/questions'
+    window.location.href = 'https://personamaker.netlify.app/questions'
 })
 
