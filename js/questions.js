@@ -1,5 +1,3 @@
-import isAuth from "isAuth";
-
 class QuestionManager {
     constructor() {
         this.questionBatch = []; // array to store all questions as object
@@ -12,14 +10,14 @@ class QuestionManager {
 
         isAuth();
 
-        fetch("https://fortunedgalab.xyz/api/questions", {
+        fetch("http://localhost:3000/api/questions", {
             method: 'POST'
         }
         )
             .then(response => {
                 console.log(`Status: ${response.status}`)
                 if (response.status == 401) {
-                    window.location.href = 'https://personamaker.netlify.app/login'
+                    window.location.href = 'http://localhost:3000/login'
                 }
                 return response.json();
             })
@@ -138,7 +136,7 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers() {
 
-        fetch("https://fortunedgalab.xyz/api/persona", {
+        fetch("http://localhost:3000/api/persona", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -158,7 +156,7 @@ class QuestionManager {
     // generate and image to go along with the persona
     async generateImage(userAnswers) {
         try {
-            const response = await fetch('https://fortunedgalab.xyz/api/image', {
+            const response = await fetch('http://localhost:3000/api/image', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

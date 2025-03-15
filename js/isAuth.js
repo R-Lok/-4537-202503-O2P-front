@@ -1,12 +1,12 @@
 function isAuth() {
-    fetch("https://fortunedgalab.xyz/isLogin", {
+    fetch("http://localhost:3000/isLogin", {
         method: 'POST'
     }
     )
         .then(response => {
             console.log(`Status: ${response.status}`)
             if (response.status == 401) {
-                window.location.href = 'https://personamaker.netlify.app/login'
+                window.location.href = 'http://localhost:3000/login'
             }
             return response.json();
         })
@@ -14,3 +14,5 @@ function isAuth() {
             console.log("error", error)
         })
 }
+
+isAuth();
