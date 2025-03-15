@@ -25,6 +25,7 @@ async function logout() {
     try {
         const res = await fetch("https://fortunedgalab.xyz/logout", {
             method: "GET",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             }
