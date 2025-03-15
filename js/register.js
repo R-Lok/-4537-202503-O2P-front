@@ -22,7 +22,7 @@ async function handleRegistration(email, pw) {
     }
 
     try {
-        const response = await fetch("http://localhost:3000/register", req)
+        const response = await fetch("https://fortunedgalab.xyz/register", req)
 
         if(!response.ok) {
             const data  = await response.json()

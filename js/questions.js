@@ -8,14 +8,15 @@ class QuestionManager {
     checkAuth(response) {
         console.log(`Status: ${response.status}`)
         if (response.status == 401) {
-            window.location.href = 'http://127.0.0.1:5500/login.html'
+            window.location.href = 'https://fortunedgalab.xyz/login.html'
         }        
     }
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
-        fetch("http://localhost:3000/api/questions", {
-            method: 'POST'
+        fetch("https://fortunedgalab.xyz/api/questions", {
+            method: 'POST',
+            credentials: 'include'
         }
         )
             .then(response => {
@@ -23,9 +24,10 @@ class QuestionManager {
                 return response.json();
             })
             .then(data => {
-                data = JSON.parse(data);
-                this.displayAllQuestions(data); // display all questions on DOM
-                this.populateAnswerArray(data);
+    
+                const message = JSON.parse(data.msg);
+                this.displayAllQuestions(message); // display all questions on DOM
+                this.populateAnswerArray(message);
             })
             .catch(error => {
                 console.log("error", error)
@@ -90,8 +92,9 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers() {
 
-        fetch("http://localhost:3000/api/persona", {
+        fetch("https://fortunedgalab.xyz/api/persona", {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -101,9 +104,8 @@ class QuestionManager {
             this.checkAuth(response);
             return response.json()})
         .then(data => {
-            console.log(data);
-            // this.displayImage(data.imageUrl);
-            this.displayPersona(data);
+            this.displayImage(data.msg.imageUrl);
+            this.displayPersona(data.msg);
         })
         .catch(error => console.error(error));
     }
