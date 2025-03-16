@@ -22,21 +22,20 @@ const logoutBtn = document.getElementById('logout-btn')
 logoutBtn.addEventListener('click', logout)
 
 async function logout() {
+    const req = {
+        method: "GET",
+        credentials: 'include'
+    }
     try {
-        const res = await fetch("https://fortunedgalab.xyz/logout", {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
+        const res = await fetch("https://fortunedgalab.xyz/logout", req)
         if (!res.ok) {
-            alert("Error during logout, need to print response message")
+            alert(`${res.status} ${res.statusText}`)
+            window.location.href = './register.html'
             return
         }
-
         window.location.href = './register.html'
     } catch (e) {
-        alert("Error during logout")
+        alert("Error during login")
+        window.location.href = './register.html'
     }
 }

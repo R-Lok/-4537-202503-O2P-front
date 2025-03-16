@@ -5,21 +5,17 @@ async function isLogin() {
     }
 
     try {
-        console.log("checking login")
-        
         const res = await fetch("https://fortunedgalab.xyz/isLogin", req);
 
         if (!res.ok) {
-            setTimeout(() => {
-                window.location.href = '../login.html';
-            }, 1000);
+            window.location.href = './login.html';
+            alert(`${res.status} ${res.statusText}: Failed authenticating`)
             return
         }
         console.log(res)
     } catch (e) {
-        setTimeout(() => {
-            window.location.href = '../login.html';
-        }, 1000);
+        window.location.href = './login.html';
+        alert(`${res.status} ${res.statusText}: Failed authenticating`)
     }
 }
 

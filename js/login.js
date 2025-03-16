@@ -17,17 +17,19 @@ async function login(email, password) {
             body: JSON.stringify({
                 "email": email,
                 "password": password
-            })
+            }),
+            credentials: 'include'
         })
 
         if (!res.ok) {
-            displayAlert("Error during login, need to print response message", true)
+            window.location.href = './register.html'
+            displayAlert(`${res.status} ${res.statusText}`, true)
             return
         }
-
-        // TODO: check if auth from response. if not auth display message
+        
         window.location.href = './index.html'
     } catch (e) {
+        window.location.href = './register.html'
         displayAlert("Error during login", true)
     }
 }
