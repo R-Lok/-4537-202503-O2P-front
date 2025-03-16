@@ -8,7 +8,7 @@ async function getUsers() {
         const res = await fetch("https://fortunedgalab.xyz/admin/users", req);
 
         if (!res.ok) {
-            alert(`${res.status} ${res.statusText}: Failed fetching users`)
+            handle_res_error(res.status)
             return
         }
 
@@ -54,6 +54,10 @@ function toggleBan(id) {
 }
 
 async function init() {
+    if(!(await isAdmin())) {
+        return
+    }
+    document.body.style.display = 'block'
     const users = await getUsers()
 
     if (!users) return
@@ -61,5 +65,7 @@ async function init() {
     populateUsers(users)
     // TODO: query for api calls left
 }
+
+
 
 init()
