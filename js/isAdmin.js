@@ -8,8 +8,8 @@ async function isAdmin() {
         const res = await fetch("https://fortunedgalab.xyz/admin", req);
 
         if (!res.ok) {
-            window.location.href = './login.html';
-            alert(`${res.status} ${res.statusText}: `)
+            window.location.href = './login.html'
+            alert(`${res.status} ${res.statusText}: Failed authenticating`)
             return
         }
         console.log(res)

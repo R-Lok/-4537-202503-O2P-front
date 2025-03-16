@@ -13,8 +13,8 @@
     <script defer src="js/isLogin.js"></script>
     <script defer src="js/isAdmin.js"></script>
     <script defer src="js/nav.js"></script>
-    <script defer src="js/getUsers.js"></script>
-    <script defer src="js/index.js"></script>
+    <script defer src="js/admin.js"></script>
+    <!-- <script defer src="js/getUsers.js"></script> -->
 </head>
 
 <body>
@@ -24,7 +24,18 @@
             <h3>
                 Admin
             </h3>
-            <table class="table" id="user-list" class="list-unstyled"></table>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">API Tokens</th>
+                    <th scope="col">Ban/Unban</th>
+                  </tr>
+                </thead>
+                <tbody id="user-list">
+                  <!-- New rows will be added here dynamically -->
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
