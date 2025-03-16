@@ -9,14 +9,12 @@ async function isAdmin() {
 
         if (!res.ok) {
             window.location.href = './login.html'
-            alert(`${res.status} ${res.statusText}: Failed authenticating`)
             return false
         }
         console.log(res)
         return true
     } catch (e) {
         window.location.href = './login.html';
-        alert(`${res.status} ${res.statusText}: Failed authenticating`)
         return false
     }
 }
