@@ -26,7 +26,7 @@ async function login(email, password) {
             displayAlert(`${res.status} ${res.statusText}`, true)
             return
         }
-        
+      
         window.location.href = './index.html'
     } catch (e) {
         window.location.href = './login.html'
