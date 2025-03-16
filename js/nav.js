@@ -30,10 +30,12 @@ async function logout() {
         const res = await fetch("https://fortunedgalab.xyz/logout", req)
         if (!res.ok) {
             alert(`${res.status} ${res.statusText}`)
+            window.location.href = './login.html'
             return
         }
-        window.location.href = './register.html'
+        window.location.href = './login.html'
     } catch (e) {
         alert("Error during login")
+        window.location.href = './login.html'
     }
 }

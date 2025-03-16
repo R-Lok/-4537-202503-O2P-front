@@ -22,11 +22,10 @@ async function login(email, password) {
         })
 
         if (!res.ok) {
-            alert(`${res.status} ${res.statusText}`)
+            displayAlert(`${res.status} ${res.statusText}`, true)
             return
         }
-        
-        // TODO: check if auth from response. if not auth display message
+      
         window.location.href = './index.html'
     } catch (e) {
         displayAlert("Error during login", true)
