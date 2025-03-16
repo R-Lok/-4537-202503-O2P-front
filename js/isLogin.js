@@ -8,13 +8,11 @@ async function isLogin() {
 
         if (!res.ok) {
             window.location.href = './login.html';
-            alert(`${res.status} ${res.statusText}: Failed authenticating`)
             return false
         }
         return true
     } catch (e) {
         window.location.href = './login.html';
-        alert(`${res.status} ${res.statusText}: Failed authenticating`)
         return false
     }
 }
