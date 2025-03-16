@@ -3,20 +3,22 @@ async function isLogin() {
         method: "GET",
         credentials: 'include'
     }
-
     try {
         const res = await fetch("https://fortunedgalab.xyz/isLogin", req);
 
         if (!res.ok) {
             window.location.href = './login.html';
             alert(`${res.status} ${res.statusText}: Failed authenticating`)
-            return
+            return false
         }
-        console.log(res)
+        return true
     } catch (e) {
         window.location.href = './login.html';
         alert(`${res.status} ${res.statusText}: Failed authenticating`)
+        return false
     }
 }
 
-isLogin()
+isLogin().then((isLoggedIn) => {
+    if (isLoggedIn) document.body.style.display = 'block'
+})
