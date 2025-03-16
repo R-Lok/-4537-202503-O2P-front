@@ -22,14 +22,14 @@ async function login(email, password) {
         })
 
         if (!res.ok) {
-            window.location.href = './register.html'
+            window.location.href = './login.html'
             displayAlert(`${res.status} ${res.statusText}`, true)
             return
         }
         
         window.location.href = './index.html'
     } catch (e) {
-        window.location.href = './register.html'
+        window.location.href = './login.html'
         displayAlert("Error during login", true)
     }
 }
