@@ -8,17 +8,27 @@ async function isAdmin() {
         const res = await fetch("https://fortunedgalab.xyz/admin", req);
 
         if (!res.ok) {
-            window.location.href = './login.html'
+            handle_res_error(res.status)
             return false
         }
         console.log(res)
         return true
     } catch (e) {
-        window.location.href = './login.html';
+        window.location.href = './index.html';
         return false
     }
 }
 
-isAdmin().then((isAdminUser) => {
-    if (isAdminUser) document.body.style.display = 'block'
-})
+function handle_res_error(statusCode) {
+    switch (statusCode) {
+        case 401:
+            window.location.href = './login.html'
+            break
+        case 403:
+            window.location.href = './403.html'
+            break
+        default:
+            //should not reach here
+            return
+    }
+}
