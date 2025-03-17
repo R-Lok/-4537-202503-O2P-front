@@ -18,15 +18,14 @@ async function login(email, password) {
                 "email": email,
                 "password": password
             }),
-            credentials: "include"
+            credentials: 'include'
         })
 
         if (!res.ok) {
-            displayAlert("Error during login, need to print response message", true)
+            displayAlert(`${res.status} ${res.statusText}`, true)
             return
         }
-
-        // TODO: check if auth from response. if not auth display message
+      
         window.location.href = './index.html'
     } catch (e) {
         displayAlert("Error during login", true)
