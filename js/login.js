@@ -28,7 +28,7 @@ async function login(email, password) {
       
         window.location.href = './index.html'
     } catch (e) {
-        displayAlert("Error during login", true)
+        displayAlert("Network Error.", true)
     }
 }
 

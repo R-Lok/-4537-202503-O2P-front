@@ -15,7 +15,7 @@ async function getUsers() {
         const data = await res.json()
         return data.msg
     } catch (e) {
-        alert(`${res.status} ${res.statusText}: Failed fetching users`)
+        alert(`Failed reaching server.`)
     }
 }
 

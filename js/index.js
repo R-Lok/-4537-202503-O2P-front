@@ -17,7 +17,7 @@ async function getApiTokens() {
         const data = await res.json()
         return data.msg.api_tokens
     } catch (e) {
-        alert(`${res.status} ${res.statusText}: Failed fetching user info`)
+        alert(`Failed reaching server.`)
     }
 }
 
