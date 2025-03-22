@@ -7,7 +7,7 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch("https://fortunedgalab.xyz/user", req);
+        const res = await fetch("http://localhost:3000/api/tokens", req);
 
         if (!res.ok) {
             alert(`${res.status} ${res.statusText}: Failed fetching user info`)
@@ -15,10 +15,18 @@ async function getApiTokens() {
         }
 
         const data = await res.json()
-        return data.msg.api_tokens
+        return data.msg;
     } catch (e) {
         alert(`${res.status} ${res.statusText}: Failed fetching user info`)
     }
+}
+
+function displayTokenWarning() {
+    let p = document.createElement("p");
+    p.textContent = "Warning: NO MORE TOKENS"
+    p.style.fontSize = "40px";
+    p.style.color = "red";
+    document.getElementById("content").append(p);
 }
 
 async function init() {
@@ -30,6 +38,10 @@ async function init() {
     const tokens = await getApiTokens()
     console.log(api_tokens)
     api_tokens.textContent += tokens
+    if(tokens <= 0) {
+        console.log("no tokens");
+        displayTokenWarning();
+    }
 
 }
 

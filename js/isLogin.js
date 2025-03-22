@@ -4,7 +4,7 @@ async function isLogin() {
         credentials: 'include'
     }
     try {
-        const res = await fetch("https://fortunedgalab.xyz/isLogin", req);
+        const res = await fetch("http://localhost:3000/isLogin", req);
 
         if (!res.ok) {
             window.location.href = './login.html';
