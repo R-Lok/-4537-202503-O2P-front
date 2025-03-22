@@ -7,7 +7,7 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch("http://localhost:3000/api/tokens", req);
+        const res = await fetch("https://fortunedgalab.xyz/api/tokens", req);
 
         if (!res.ok) {
             alert(`${res.status} ${res.statusText}: Failed fetching user info`)

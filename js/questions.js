@@ -15,7 +15,7 @@ class QuestionManager {
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
-        fetch("http://localhost:3000/api/questions", {
+        fetch("https://fortunedgalab.xyz/api/questions", {
             method: 'GET',
             credentials: 'include'
         }
@@ -93,7 +93,7 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers(quizType) {
 
-        fetch("http://localhost:3000/api/persona", {
+        fetch("https://fortunedgalab.xyz/api/persona", {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -145,7 +145,7 @@ class QuizManager {
     }
 
     getQuizzes() {
-        fetch("http://localhost:3000/api/quizzes", {
+        fetch("https://fortunedgalab.xyz/api/quizzes", {
             method: 'GET',
             credentials: 'include'
         }

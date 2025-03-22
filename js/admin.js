@@ -5,7 +5,7 @@ async function getUsers() {
     }
 
     try {
-        const res = await fetch("http://localhost:3000/admin/users", req);
+        const res = await fetch("https://fortunedgalab.xyz/admin/users", req);
 
         if (!res.ok) {
             handle_res_error(res.status)
