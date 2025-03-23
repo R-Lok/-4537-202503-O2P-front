@@ -15,7 +15,7 @@ async function getUsers() {
         const data = await res.json()
         return data.msg
     } catch (e) {
-        alert(`Failed reaching server.`)
+        alert(`${e.name}: ${e.message}`);
     }
 }
 
@@ -28,6 +28,7 @@ function populateUsers(users) {
 
     // Loop through the users array
     users.forEach(user => {
+        console.log(user)
         const row = document.createElement("tr");
 
         // Create table row and add the user data
@@ -35,7 +36,10 @@ function populateUsers(users) {
         <td>${user.email}</td>
         <td contenteditable="true">${user.api_tokens}</td>
         <td>
-            <button class="btn btn-danger" onclick="toggleBan('${user._id}')">Ban/Unban</button>
+            <button class="btn ${user.enable ? 'btn-danger' : 'btn-success'}" 
+                id="banBtn${user.id}" onclick="toggleBan('${user.email}', ${user.enable})">
+                ${user.enable ? 'Ban' : 'Unban'}
+            </button>
         </td>
         `;
 
@@ -43,14 +47,32 @@ function populateUsers(users) {
         userList.appendChild(row);
     });
 }
-    // TODO:add ban unban buttons
-//     <button class="btn ${user.enable ? 'btn-success' : 'btn-danger'}" 
-//     id="banBtn${user.id}" onclick="toggleBan(${user.id})">
-//     ${user.enable ? 'Unban' : 'Ban'}
-// </button>
 
-function toggleBan(id) {
-    console.log("BANNED")
+async function toggleBan(email, enabled) {
+    console.log(email, enabled)
+    // const req = {
+    const endpoint = (enabled) ? "banUser" : "unBanUser"
+    try {
+        const res = await fetch(`https://fortunedgalab.xyz/admin/${endpoint}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "email": email
+            }),
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            // TODO: handle res codes
+            return
+        }
+
+        location.reload()
+    } catch (err) {
+        alert(`${err.status} ${err.message}`)
+    }
 }
 
 async function init() {
@@ -63,9 +85,6 @@ async function init() {
     if (!users) return
 
     populateUsers(users)
-    // TODO: query for api calls left
 }
-
-
 
 init()

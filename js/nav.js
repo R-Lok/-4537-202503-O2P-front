@@ -35,7 +35,7 @@ async function logout() {
         }
         window.location.href = './login.html'
     } catch (e) {
-        alert("Failed reaching server.")
+        alert(`${e.name}: ${e.message}`);
         window.location.href = './login.html'
     }
 }

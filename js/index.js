@@ -17,13 +17,13 @@ async function getApiTokens() {
         const data = await res.json()
         return data.msg.api_tokens
     } catch (e) {
-        alert(`Failed reaching server.`)
+        alert(`${e.name}: ${e.message}`);
     }
 }
 
 async function init() {
     document.getElementById('start-btn').addEventListener('click', function() {
-        window.location.href = 'https://personamaker.netlify.app/questions'
+        window.location.href = 'questions.html'
     })
 
     // TODO: query for api calls left
