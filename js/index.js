@@ -17,7 +17,7 @@ async function getApiTokens() {
         const data = await res.json()
         return data.msg.api_tokens
     } catch (e) {
-        alert(`${e.name}: ${e.message}`);
+        alert(`${e.name} ${e.code}: ${e.message}`);
     }
 }
 

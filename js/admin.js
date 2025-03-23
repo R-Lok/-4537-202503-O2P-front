@@ -15,7 +15,7 @@ async function getUsers() {
         const data = await res.json()
         return data.msg
     } catch (e) {
-        alert(`${e.name}: ${e.message}`);
+        alert(`${e.name} ${e.code}: ${e.message}`);
     }
 }
 
@@ -71,7 +71,8 @@ async function toggleBan(email, enabled) {
 
         location.reload()
     } catch (err) {
-        alert(`${err.status} ${err.message}`)
+        alert(`${e.name} ${e.code}: ${e.message}`);
+        location.reload()
     }
 }
 

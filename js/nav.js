@@ -35,7 +35,7 @@ async function logout() {
         }
         window.location.href = './login.html'
     } catch (e) {
-        alert(`${e.name}: ${e.message}`);
+        alert(`${e.name} ${e.code}: ${e.message}`);
         window.location.href = './login.html'
     }
 }

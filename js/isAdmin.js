@@ -11,7 +11,6 @@ async function isAdmin() {
             handle_res_error(res.status)
             return false
         }
-        console.log(res)
         return true
     } catch (e) {
         window.location.href = './index.html';
