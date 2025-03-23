@@ -27,7 +27,7 @@ async function logout() {
         credentials: 'include'
     }
     try {
-        const res = await fetch("https://fortunedgalab.xyz/logout", req)
+        const res = await fetch(`${URL}logout`, req)
         if (!res.ok) {
             alert(`${res.status} ${res.statusText}`)
             window.location.href = './login.html'

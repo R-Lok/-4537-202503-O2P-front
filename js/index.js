@@ -7,7 +7,7 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch("https://fortunedgalab.xyz/user", req);
+        const res = await fetch(`${URL}user`, req);
 
         if (!res.ok) {
             alert(`${res.status} ${res.statusText}: Failed fetching user info`)
