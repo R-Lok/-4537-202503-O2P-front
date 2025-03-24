@@ -22,7 +22,7 @@ async function login(email, password) {
         })
 
         if (!res.ok) {
-            displayAlert(`${res.status} ${res.statusText}`, true)
+            if (res.status == 403 || res.status == 404) displayAlert("Invalid email/password.", true)
             return
         }
       
