@@ -3,6 +3,12 @@ const HOME = "Home"
 const QUIZ = "Quiz"
 const LOGOUT = "Logout"
 
+// login
+const LOGIN = "Login"
+const EMAIL_LABEL = "Email address"
+const PASSWORD_LABEL = "Password"
+const SIGNUP_LABEL = "Sign Up"
+
 // admin
 const ADMIN = "Admin"
 const EMAIL = "Email"

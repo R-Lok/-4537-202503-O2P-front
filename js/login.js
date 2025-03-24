@@ -1,5 +1,13 @@
 const submit = document.getElementById('submit-btn')
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = LOGIN
+    document.querySelector("#email-label").textContent = EMAIL_LABEL 
+    document.querySelector("#password-label").textContent = PASSWORD_LABEL 
+    document.querySelector("#signup-label").textContent = SIGNUP_LABEL
+    document.querySelector("#submit-btn").textContent = LOGIN
+})
+
 submit.addEventListener('click', (event) => {
     event.preventDefault()
     const email = document.getElementById('email').value
