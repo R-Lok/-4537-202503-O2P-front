@@ -30,7 +30,7 @@ async function login(email, password) {
       
         window.location.href = './index.html'
     } catch (e) {
-        displayAlert("Network Error.", true)
+        displayAlert(`${ERR_NETWORK}`, true)
     }
 }
 
