@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = ADMIN
+    document.querySelector(".text-center h3").textContent = ADMIN
+    document.querySelector("#email").textContent = EMAIL
+    document.querySelector("#api_tokens").textContent = API_TOKENS
+    document.querySelector("#ban_unban").textContent = BAN_UNBAN
+})
+
 async function getUsers() {
     const req = {
         method: "GET",
@@ -33,14 +41,14 @@ function populateUsers(users) {
 
         // Create table row and add the user data
         row.innerHTML = `
-        <td>${user.email}</td>
-        <td contenteditable="true">${user.api_tokens}</td>
-        <td>
-            <button class="btn ${user.enable ? 'btn-danger' : 'btn-success'}" 
-                id="banBtn${user.id}" onclick="toggleBan('${user.email}', ${user.enable})">
-                ${user.enable ? 'Ban' : 'Unban'}
-            </button>
-        </td>
+            <td>${user.email}</td>
+            <td contenteditable="true">${user.api_tokens}</td>
+            <td>
+                <button class="btn ${user.enable ? 'btn-danger' : 'btn-success'}" 
+                    id="banBtn${user.id}" onclick="toggleBan('${user.email}', ${user.enable})">
+                    ${user.enable ? `${BAN}` : `${UNBAN}`}
+                </button>
+            </td>
         `;
 
         // Append the new row to the userList table body
