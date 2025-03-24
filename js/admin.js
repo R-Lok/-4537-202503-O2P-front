@@ -15,7 +15,7 @@ async function getUsers() {
         const data = await res.json()
         return data.msg
     } catch (e) {
-        alert(`${e.name} ${e.code}: ${e.message}`);
+        alert(`${e.name}: ${e.message}`);
     }
 }
 
@@ -65,13 +65,13 @@ async function toggleBan(email, enabled) {
         })
 
         if (!res.ok) {
-            // TODO: handle res codes
+            handle_res_error(res.status)
             return
         }
 
         location.reload()
     } catch (err) {
-        alert(`${e.name} ${e.code}: ${e.message}`);
+        alert(`${e.name}: ${e.message}`);
         location.reload()
     }
 }

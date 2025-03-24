@@ -10,13 +10,14 @@ async function getApiTokens() {
         const res = await fetch(`${URL}user`, req);
 
         if (!res.ok) {
+            handle_res_error(res.status)
             return
         }
 
         const data = await res.json()
         return data.msg.api_tokens
     } catch (e) {
-        alert(`${e.name} ${e.code}: ${e.message}`);
+        alert(`${e.name}: ${e.message}`);
     }
 }
 
@@ -25,7 +26,6 @@ async function init() {
         window.location.href = 'questions.html'
     })
 
-    // TODO: query for api calls left
     const tokens = await getApiTokens()
     api_tokens.textContent += tokens
 }

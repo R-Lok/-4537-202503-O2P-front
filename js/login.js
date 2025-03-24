@@ -22,7 +22,9 @@ async function login(email, password) {
         })
 
         if (!res.ok) {
-            if (res.status == 403 || res.status == 404) displayAlert("Invalid email/password.", true)
+            let msg = await res.json()
+            msg = msg.msg
+            displayAlert(msg, true)
             return
         }
       

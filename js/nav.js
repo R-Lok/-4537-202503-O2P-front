@@ -29,13 +29,13 @@ async function logout() {
     try {
         const res = await fetch(`${URL}logout`, req)
         if (!res.ok) {
-            alert(`${res.status} ${res.statusText}`)
-            window.location.href = './login.html'
+            let msg = await res.json()
+            msg = msg.msg
+            alert(`${msg}`)
             return
         }
         window.location.href = './login.html'
     } catch (e) {
-        alert(`${e.name} ${e.code}: ${e.message}`);
-        window.location.href = './login.html'
+        alert(`${e.name}: ${e.message}`);
     }
 }
