@@ -10,7 +10,6 @@ async function getApiTokens() {
         const res = await fetch(`${URL}user`, req);
 
         if (!res.ok) {
-            alert(`${res.status} ${res.statusText}: Failed fetching user info`)
             return
         }
 
@@ -28,9 +27,7 @@ async function init() {
 
     // TODO: query for api calls left
     const tokens = await getApiTokens()
-    console.log(api_tokens)
     api_tokens.textContent += tokens
-
 }
 
 init()

@@ -4,15 +4,15 @@ async function isLogin() {
         credentials: 'include'
     }
     try {
-        const res = await fetch(`${URL}isLogin`, req);
+        const res = await fetch(`${URL}isLogin`, req)
 
         if (!res.ok) {
-            window.location.href = './login.html';
+            window.location.href = './login.html'
             return false
         }
         return true
     } catch (e) {
-        window.location.href = './login.html';
+        window.location.href = './login.html'
         return false
     }
 }
