@@ -9,6 +9,12 @@ const BAN_UNBAN = "Ban/Unban"
 const BAN = "Ban"
 const UNBAN = "Unban"
 
+// index
+const TITLE_INDEX = "Persona Maker"
+const DESCRIPTION_INDEX = "Discover your persona!"
+const START_ADV = "Start Adventure"
+const TOKENS_REMAINING = "API Calls Remaining: "
+
 
 // 403
 const TITLE_403 = "403 Not Authorised"
