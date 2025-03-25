@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = QUIZ
+    document.querySelector("#questions-title").textContent = QUESTIONS.toUpperCase()
+    document.querySelector("#submit-btn").textContent = SUBMIT
+})
 class QuestionManager {
     constructor() {
         this.questionBatch = []; // array to store all questions as object
@@ -6,7 +11,7 @@ class QuestionManager {
     }
 
     checkAuth(response) {
-        console.log(`Status: ${response.status}`)
+        console.log(`${STATUS}: ${response.status}`)
         if (response.status == 401) {
             window.location.href = 'https://personamaker.netlify.app/login'
         }        
@@ -30,7 +35,7 @@ class QuestionManager {
                 this.populateAnswerArray(message);
             })
             .catch(error => {
-                console.log("error", error)
+                console.log(`${ERROR}`, error)
             })
     }
 
@@ -127,7 +132,7 @@ class QuestionManager {
             imageContainer.innerHTML = '';
             imageContainer.appendChild(img);
         } else {
-            console.error('No image URL returned');
+            console.error(`${NO_IMG_URL}`);
         }
     }
     

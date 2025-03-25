@@ -1,5 +1,15 @@
 const submitBtn = document.getElementById('submit-btn')
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = REGISTRATION
+    document.querySelector("#alert").textContent = DANGER_ALERT
+    document.querySelector("#email-label").textContent = EMAIL_LABEL
+    document.querySelector("#emailHelp").textContent = EMAIL_NEVER_SHARED
+    document.querySelector("#password-label").textContent = PASSWORD_LABEL
+    document.querySelector("#have_an_account").textContent = HAVE_AN_ACCOUNT
+    document.querySelector("#submit-btn").textContent = SUBMIT
+})
+
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
 
@@ -30,13 +40,13 @@ async function handleRegistration(email, pw) {
             return
         }
 
-        displayAlert("Account created - redirecting to login...", false)
+        displayAlert(`${ACC_CREATED}`, false)
         setTimeout(() => {
             window.location.href = './login.html'
         }, 5000)
 
     } catch (err) {
-        displayAlert('Network Error', true)
+        displayAlert(`${ERR_NETWORK}`, true)
     }
 }
 
