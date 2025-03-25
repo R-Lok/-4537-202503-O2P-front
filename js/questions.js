@@ -19,7 +19,7 @@ class QuestionManager {
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
-        fetch(`${URL}/api/questions`, {
+        fetch(`${BACK_URL}/api/questions`, {
             method: 'GET',
             credentials: 'include'
         }
@@ -97,7 +97,7 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers(quizType) {
 
-        fetch(`${URL}/api/persona`, {
+        fetch(`${BACK_URL}/api/persona`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -149,7 +149,7 @@ class QuizManager {
     }
 
     getQuizzes() {
-        fetch(`${URL}/api/quizzes`, {
+        fetch(`${BACK_URL}/api/quizzes`, {
             method: 'GET',
             credentials: 'include'
         }
