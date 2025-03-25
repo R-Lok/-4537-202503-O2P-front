@@ -27,7 +27,7 @@ async function logout() {
         credentials: 'include'
     }
     try {
-        const res = await fetch(`${URL}logout`, req)
+        const res = await fetch(`${URL}/logout`, req)
         if (!res.ok) {
             let msg = await res.json()
             msg = msg.msg

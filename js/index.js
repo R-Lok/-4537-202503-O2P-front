@@ -16,7 +16,7 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch("https://fortunedgalab.xyz/api/tokens", req);
+        const res = await fetch(`${URL}/api/tokens`, req);
 
         if (!res.ok) {
             handle_res_error(res.status)

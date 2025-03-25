@@ -1,4 +1,18 @@
-const URL = "https://fortunedgalab.xyz/"
+const env = {
+    local: "http://localhost:3000",
+    dev: "https://fortunedgalab.xyz/dev",
+    prod: "https://fortunedgalab.xyz"
+}
+
+const URL = env[window.location.hostname.includes("personamakerdev") 
+    ? "dev" 
+    : window.location.hostname.includes("personamaker") 
+    ? "prod" 
+    : "local"
+]
+console.log(window.location.hostname)
+console.log(URL)
+
 const HOME = "Home"
 const QUIZ = "Quiz"
 const LOGOUT = "Logout"
