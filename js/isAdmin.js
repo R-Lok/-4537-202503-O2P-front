@@ -5,7 +5,7 @@ async function isAdmin() {
     }
 
     try {
-        const res = await fetch(`${URL}admin`, req);
+        const res = await fetch(`${URL}/admin`, req);
 
         if (!res.ok) {
             handle_res_error(res.status)

@@ -13,7 +13,7 @@ async function getUsers() {
     }
 
     try {
-        const res = await fetch(`${URL}admin/users`, req);
+        const res = await fetch(`${URL}/admin/users`, req);
 
         if (!res.ok) {
             handle_res_error(res.status)
@@ -61,7 +61,7 @@ async function toggleBan(email, enabled) {
     // const req = {
     const endpoint = (enabled) ? "banUser" : "unBanUser"
     try {
-        const res = await fetch(`${URL}admin/${endpoint}`, {
+        const res = await fetch(`${URL}/admin/${endpoint}`, {
             method: "POST", // TODO: ban/unban is PATCH
             headers: {
                 "Content-Type": "application/json"

@@ -16,7 +16,7 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch("https://fortunedgalab.xyz/api/tokens", req);
+        const res = await fetch(`${URL}/api/tokens`, req);
 
         if (!res.ok) {
             handle_res_error(res.status)
@@ -40,7 +40,7 @@ function displayTokenWarning() {
 
 async function init() {
     document.getElementById('start-btn').addEventListener('click', function() {
-        window.location.href = 'questions.html'
+        window.location.href = './questions'
     })
 
     const tokens = await getApiTokens()
@@ -49,7 +49,7 @@ async function init() {
         console.log("no tokens");
         displayTokenWarning();
     }
-
+    
 }
 
 init()
