@@ -9,7 +9,7 @@ submit.addEventListener('click', (event) => {
 
 async function login(email, password) {
     try {
-        const res = await fetch("https://fortunedgalab.xyz/login", {
+        const res = await fetch(`${URL}login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -22,13 +22,15 @@ async function login(email, password) {
         })
 
         if (!res.ok) {
-            displayAlert(`${res.status} ${res.statusText}`, true)
+            let msg = await res.json()
+            msg = msg.msg
+            displayAlert(msg, true)
             return
         }
       
         window.location.href = './index.html'
     } catch (e) {
-        displayAlert("Error during login", true)
+        displayAlert("Network Error.", true)
     }
 }
 

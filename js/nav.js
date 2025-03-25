@@ -1,15 +1,15 @@
 document.getElementById("nav").innerHTML = `
 <nav class="navbar navbar-expand-lg bg-body-tertiafortunedgalabry">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Persona Maker</a>
+        <a class="navbar-brand" href="./index.html">Persona Maker</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                 <a class="nav-link" href="./index.html">Home</a>
+                <a class="nav-link" href="./questions.html">Quiz</a>
             </div>
             <button id="logout-btn" class="btn btn-danger ms-auto">Logout</button>
         </div>
@@ -27,15 +27,15 @@ async function logout() {
         credentials: 'include'
     }
     try {
-        const res = await fetch("https://fortunedgalab.xyz/logout", req)
+        const res = await fetch(`${URL}logout`, req)
         if (!res.ok) {
-            alert(`${res.status} ${res.statusText}`)
-            window.location.href = './login.html'
+            let msg = await res.json()
+            msg = msg.msg
+            alert(`${msg}`)
             return
         }
         window.location.href = './login.html'
     } catch (e) {
-        alert("Error during login")
-        window.location.href = './login.html'
+        alert(`${e.name}: ${e.message}`);
     }
 }
