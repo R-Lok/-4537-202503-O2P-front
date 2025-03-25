@@ -1,5 +1,14 @@
 const api_tokens = document.getElementById("api-tokens")
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = HOME
+    document.querySelector(".text-center h3").textContent = TITLE_INDEX
+    document.querySelector(".text-center h4").textContent = DESCRIPTION_INDEX
+    document.querySelector("#start-btn").textContent = START_ADV
+    api_tokens.textContent = TOKENS_REMAINING
+})
+
+
 async function getApiTokens() {
     const req = {
         method: "GET",
