@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = QUIZ
+    document.querySelector("#questions-title").textContent = QUESTIONS.toUpperCase()
+})
 
 function checkAuth(response) {
     console.log(`Status: ${response.status}`)
@@ -15,7 +19,7 @@ class QuestionManager {
 
     // make a request to server to propmt AI for questions
     getBatchOfQuestions() {
-        fetch("https://fortunedgalab.xyz/api/questions", {
+        fetch(`${BACK_URL}/api/questions`, {
             method: 'GET',
             credentials: 'include'
         }
@@ -31,7 +35,7 @@ class QuestionManager {
                 this.populateAnswerArray(message);
             })
             .catch(error => {
-                console.log("error", error)
+                console.log(`${ERROR}`, error)
             })
     }
 
@@ -93,7 +97,7 @@ class QuestionManager {
     // send the results to server to get AI generated persona
     submitAnswers(quizType) {
 
-        fetch("https://fortunedgalab.xyz/api/persona", {
+        fetch(`${BACK_URL}/api/persona`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -131,7 +135,7 @@ class QuestionManager {
             imageContainer.innerHTML = '';
             imageContainer.appendChild(img);
         } else {
-            console.error('No image URL returned');
+            console.error(`${NO_IMG_URL}`);
         }
     }
     
@@ -145,7 +149,7 @@ class QuizManager {
     }
 
     getQuizzes() {
-        fetch("https://fortunedgalab.xyz/api/quizzes", {
+        fetch(`${BACK_URL}/api/quizzes`, {
             method: 'GET',
             credentials: 'include'
         }

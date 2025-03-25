@@ -1,5 +1,14 @@
 const api_tokens = document.getElementById("api-tokens")
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = HOME
+    document.querySelector(".text-center h3").textContent = TITLE_INDEX
+    document.querySelector(".text-center h4").textContent = DESCRIPTION_INDEX
+    document.querySelector("#start-btn").textContent = START_ADV
+    api_tokens.textContent = TOKENS_REMAINING
+})
+
+
 async function getApiTokens() {
     const req = {
         method: "GET",
@@ -7,17 +16,17 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch("https://fortunedgalab.xyz/api/tokens", req);
+        const res = await fetch(`${BACK_URL}/api/tokens`, req);
 
         if (!res.ok) {
-            alert(`${res.status} ${res.statusText}: Failed fetching user info`)
+            handle_res_error(res.status)
             return
         }
 
         const data = await res.json()
         return data.msg;
     } catch (e) {
-        alert(`${res.status} ${res.statusText}: Failed fetching user info`)
+        alert(`${e.name}: ${e.message}`);
     }
 }
 
@@ -34,15 +43,11 @@ async function init() {
         window.location.href = './questions'
     })
 
-    // TODO: query for api calls left
     const tokens = await getApiTokens()
-    console.log(api_tokens)
     api_tokens.textContent += tokens
     if(tokens <= 0) {
-        console.log("no tokens");
         displayTokenWarning();
     }
-
 }
 
 init()
