@@ -29,14 +29,6 @@ function displayTokenWarning() {
     document.getElementById("content").append(p);
 }
 
-function displayTokenWarning() {
-    let p = document.createElement("p");
-    p.textContent = "Warning: NO MORE TOKENS"
-    p.style.fontSize = "40px";
-    p.style.color = "red";
-    document.getElementById("content").append(p);
-}
-
 async function init() {
     document.getElementById('start-btn').addEventListener('click', function() {
         window.location.href = 'questions.html'
