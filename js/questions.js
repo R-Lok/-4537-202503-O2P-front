@@ -2,7 +2,7 @@
 function checkAuth(response) {
     console.log(`Status: ${response.status}`)
     if (response.status == 401) {
-        window.location.href = 'https://personamaker.netlify.app/login'
+        window.location.href = './login'
     }        
 }
 
