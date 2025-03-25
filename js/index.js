@@ -16,7 +16,7 @@ async function getApiTokens() {
     }
 
     try {
-        const res = await fetch(`${URL}user`, req);
+        const res = await fetch("https://fortunedgalab.xyz/api/tokens", req);
 
         if (!res.ok) {
             handle_res_error(res.status)
@@ -24,19 +24,30 @@ async function getApiTokens() {
         }
 
         const data = await res.json()
-        return data.msg.api_tokens
+        return data.msg;
     } catch (e) {
         alert(`${e.name}: ${e.message}`);
     }
 }
 
+function displayTokenWarning() {
+    let p = document.createElement("p");
+    p.textContent = "Warning: NO MORE TOKENS"
+    p.style.fontSize = "40px";
+    p.style.color = "red";
+    document.getElementById("content").append(p);
+}
+
 async function init() {
     document.getElementById('start-btn').addEventListener('click', function() {
-        window.location.href = 'questions.html'
+        window.location.href = './questions'
     })
 
     const tokens = await getApiTokens()
     api_tokens.textContent += tokens
+    if(tokens <= 0) {
+        displayTokenWarning();
+    }
 }
 
 init()

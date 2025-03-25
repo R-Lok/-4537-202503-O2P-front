@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.title = QUIZ
     document.querySelector("#questions-title").textContent = QUESTIONS.toUpperCase()
-    document.querySelector("#submit-btn").textContent = SUBMIT
 })
+
+function checkAuth(response) {
+    console.log(`Status: ${response.status}`)
+    if (response.status == 401) {
+        window.location.href = './login'
+    }        
+}
+
 class QuestionManager {
     constructor() {
         this.questionBatch = []; // array to store all questions as object
         this.numOfQuestions = 3; // number of questions to generate. ATM prompt would have to be changed too.
         this.answers = []; // array to store key value pairs of questions and answers
-    }
-
-    checkAuth(response) {
-        console.log(`${STATUS}: ${response.status}`)
-        if (response.status == 401) {
-            window.location.href = 'https://personamaker.netlify.app/login'
-        }        
     }
 
     // make a request to server to propmt AI for questions
@@ -25,7 +25,7 @@ class QuestionManager {
         }
         )
             .then(response => {
-                this.checkAuth(response);
+                checkAuth(response);
                 return response.json();
             })
             .then(data => {
@@ -45,7 +45,7 @@ class QuestionManager {
         
         // for each question, create a p tag for question, create a list
         // and append list item for each possible answer
-        for(let i = 0; i < data.questions.length; i++) {
+        for(let i = 0; i < this.numOfQuestions; i++) {
             let p = document.createElement("p");
             p.textContent = data.questions[i].question;
             let ul = document.createElement("ul");
@@ -95,7 +95,7 @@ class QuestionManager {
     }
 
     // send the results to server to get AI generated persona
-    submitAnswers() {
+    submitAnswers(quizType) {
 
         fetch(`${URL}api/persona`, {
             method: 'POST',
@@ -103,10 +103,13 @@ class QuestionManager {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(this.answers)
+            body: JSON.stringify({
+                quizType: quizType,
+                answers: this.answers
+            })
         })
         .then(response => {
-            this.checkAuth(response);
+            checkAuth(response);
             return response.json()})
         .then(data => {
             this.displayImage(data.msg.imageUrl);
@@ -138,6 +141,113 @@ class QuestionManager {
     
 }
 
-const questionMan = new QuestionManager();
-document.addEventListener("DOMContentLoaded", () => questionMan.getBatchOfQuestions());
-document.getElementById('submit-btn').addEventListener("click", () => questionMan.submitAnswers());
+class QuizManager {
+
+    constructor() {
+        this.questionMan = new QuestionManager();
+        this.selectedQuiz;
+    }
+
+    getQuizzes() {
+        fetch("https://fortunedgalab.xyz/api/quizzes", {
+            method: 'GET',
+            credentials: 'include'
+        }
+        )
+            .then(response => {
+                checkAuth(response);
+                return response.json();
+            })
+            .then(data => {
+                this.displayQuizzes(data.msg);
+
+            })
+            .catch(error => {
+                console.log("error", error)
+            })
+    }
+
+    // pop-up modal for user to choose which quiz to play
+    createQuizModal(title, items) {
+        return new Promise((res) => {
+            const quizModal = document.createElement("div");
+            quizModal.classList.add("modal");
+        
+            quizModal.innerHTML = `
+                <div class="modal-content">
+                    <h2>${title}</h2>
+                    <div class="quizzes-container">
+                            ${items.map(item => `
+                                    <p class="quiz-item">${item}</p>
+                            `).join('')}
+                    </div>
+                </div>
+            `;
+        
+            document.body.appendChild(quizModal);
+
+            // make sure after dom loaded, styles reapplied
+            setTimeout(() => {
+                document.querySelectorAll(".quiz-item").forEach(item => {
+                    item.classList.add("quiz-item");
+                });
+
+                document.querySelectorAll(".quiz-item").forEach(item => {
+                    item.addEventListener("click", function() {
+                        console.log(this.textContent);
+                        quizModal.remove();
+                        res(this.textContent);
+                    })
+                });
+            }, 0);
+            
+            quizModal.style.visibility = 'visible';
+        });
+    }
+
+    generateSubmitButton() {
+        let submitButton = document.createElement("button");
+        submitButton.id = "submit-btn";
+        submitButton.textContent = "Submit";
+
+        document.getElementById("sub-btn").append(submitButton);
+        submitButton.style.visibility = "hidden";
+
+        document.getElementById("submit-btn").addEventListener("click", () => {
+            if (this.selectedQuiz) {
+                this.questionMan.submitAnswers(this.selectedQuiz);
+            } else {
+                console.log("No quiz selected yet!");
+            }
+        });
+    }
+
+    displayQuizzes(quizzes) {
+        const title = "Select a Quiz!";
+        const quizList = [];
+        for(let i = 0; i < quizzes.length; i++) {
+            quizList.push(quizzes[i].name);
+        }
+        
+        // wait for quiz to be selected
+        this.createQuizModal(title, quizList).then((selectedQuiz) => {
+            this.selectedQuiz = selectedQuiz;
+            
+            // only display questions once quiz type is chosen
+            document.getElementById("question-batch").style.visibility = 'visible';
+            document.getElementById("submit-btn").style.visibility = 'visible';
+        });
+    }
+    
+    startQuestions() {
+        this.getQuizzes();
+
+        // start generating quizzes
+        this.questionMan.getBatchOfQuestions();
+
+        this.generateSubmitButton();
+    }
+}
+
+const quizManager = new QuizManager();
+quizManager.startQuestions();
