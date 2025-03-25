@@ -17,7 +17,7 @@ submit.addEventListener('click', (event) => {
 
 async function login(email, password) {
     try {
-        const res = await fetch(`${URL}/login`, {
+        const res = await fetch(`${BACK_URL}/login`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

@@ -4,14 +4,14 @@ const env = {
     prod: "https://fortunedgalab.xyz"
 }
 
-const URL = env[window.location.hostname.includes("personamakerdev") 
+const BACK_URL = env[window.location.hostname.includes("personamakerdev") 
     ? "dev" 
     : window.location.hostname.includes("personamaker") 
     ? "prod" 
     : "local"
 ]
 console.log(window.location.hostname)
-console.log(URL)
+console.log(BACK_URL)
 
 const HOME = "Home"
 const QUIZ = "Quiz"

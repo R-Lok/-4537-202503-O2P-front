@@ -4,7 +4,7 @@ async function isLogin() {
         credentials: 'include'
     }
     try {
-        const res = await fetch(`${URL}/isLogin`, req)
+        const res = await fetch(`${BACK_URL}/isLogin`, req)
 
         if (!res.ok) {
             handle_res_error(res.status)
