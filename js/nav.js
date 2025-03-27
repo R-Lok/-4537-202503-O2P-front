@@ -63,4 +63,8 @@ function updateAdminNav() {
     document.getElementById('logout-btn').addEventListener('click', logout)
 }
 
-isAdmin()
+isAdmin().then(data => {
+    if(data === true) {
+        updateAdminNav()
+    }
+})
