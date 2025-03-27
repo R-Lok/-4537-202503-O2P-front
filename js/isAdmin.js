@@ -8,9 +8,9 @@ async function isAdmin() {
         const res = await fetch(`${BACK_URL}/admin`, req)
 
         if (!res.ok) {
-            if (window.location.pathname.includes("/admin")) {
+            if (window.location.pathname.includes("/admin")) { // on admin page
                 handle_res_error(res.status)
-            } else if (res.status == 401) {
+            } else if (res.status == 401) { // on all other pages
                 window.location.href = './login.html'
             }
             return false
