@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.title = ADMIN
-    document.querySelector(".text-center h3").textContent = ADMIN
-    document.querySelector("#email").textContent = EMAIL
-    document.querySelector("#api_tokens").textContent = API_TOKENS
-    document.querySelector("#ban_unban").textContent = BAN_UNBAN
+    document.querySelector("#header").textContent = ADMIN
+    document.querySelector("#email-heading").textContent = EMAIL
+    document.getElementById("role-heading").textContent = ROLE
+    document.querySelector("#api-usage-heading").textContent = API_TOKENS
+    document.querySelector("#ban-heading").textContent = BAN_UNBAN
 })
 
 async function getUsers() {
@@ -21,7 +22,7 @@ async function getUsers() {
         }
 
         const data = await res.json()
-        return data.msg
+        populateUsers(data.msg)
     } catch (e) {
         alert(`${e.name}: ${e.message}`);
     }
@@ -32,7 +33,7 @@ function populateUsers(users) {
     const userList = document.getElementById("user-list");
 
     // Clear the previous contents of the table
-    userList.innerHTML = "";
+    userList.replaceChildren()
 
     // Loop through the users array
     users.forEach(user => {
@@ -42,7 +43,8 @@ function populateUsers(users) {
         // Create table row and add the user data
         row.innerHTML = `
             <td>${user.email}</td>
-            <td contenteditable="true">${user.api_tokens}</td>
+            <td>${user.role}</td>
+            <td>${user.apiCallCount}</td>
             <td>
                 <button class="btn ${user.enable ? 'btn-danger' : 'btn-success'}" 
                     id="banBtn${user.id}" onclick="toggleBan('${user.email}', ${user.enable})">
@@ -89,11 +91,7 @@ async function init() {
         return
     }
     document.body.style.display = 'block'
-    const users = await getUsers()
-
-    if (!users) return
-
-    populateUsers(users)
+    await getUsers()
 }
 
 init()
