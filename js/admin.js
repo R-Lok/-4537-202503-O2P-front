@@ -28,7 +28,6 @@ async function getUsers() {
 }
 
 function populateUsers(users) {
-    console.log(typeof(users))
     const userList = document.getElementById("user-list");
 
     // Clear the previous contents of the table
@@ -36,7 +35,6 @@ function populateUsers(users) {
 
     // Loop through the users array
     users.forEach(user => {
-        console.log(user)
         const row = document.createElement("tr");
 
         // Create table row and add the user data
@@ -57,7 +55,6 @@ function populateUsers(users) {
 }
 
 async function toggleBan(email, enabled) {
-    console.log(email, enabled)
     // const req = {
     const endpoint = (enabled) ? "banUser" : "unBanUser"
     try {
@@ -85,9 +82,14 @@ async function toggleBan(email, enabled) {
 }
 
 async function init() {
-    if(!(await isAdmin())) {
+    const userIsAdmin = await isAdmin()
+    if (userIsAdmin === false) {
+        window.location.href = './403.html'
         return
-    }
+    } else if (userIsAdmin === null) {
+        return
+    } 
+
     document.body.style.display = 'block'
     const users = await getUsers()
 

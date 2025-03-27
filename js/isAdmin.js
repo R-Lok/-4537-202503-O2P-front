@@ -5,16 +5,15 @@ async function isAdmin() {
     }
 
     try {
-        const res = await fetch(`${BACK_URL}/admin`, req);
+        const res = await fetch(`${BACK_URL}/admin`, req)
 
         if (!res.ok) {
-            handle_res_error(res.status)
             return false
         }
         return true
     } catch (e) {
-        window.location.href = './index.html';
-        return false
+        alert(`${e.name}: ${e.message}`)
+        return null
     }
 }
 
