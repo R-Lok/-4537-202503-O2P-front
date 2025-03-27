@@ -12,8 +12,8 @@ async function isAdmin() {
         }
         return true
     } catch (e) {
-        window.location.href = './index.html'
-        return false
+        alert(`${e.name}: ${e.message}`)
+        return null
     }
 }
 
