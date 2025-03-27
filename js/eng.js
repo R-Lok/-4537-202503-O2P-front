@@ -38,10 +38,17 @@ const SIGNUP_LABEL = "Sign Up"
 // admin
 const ADMIN = "Admin"
 const EMAIL = "Email"
-const API_TOKENS = "API Tokens"
+const ROLE = "Role"
+const API_TOKENS = "Number of successful requests made"
 const BAN_UNBAN = "Ban/Unban"
 const BAN = "Ban"
 const UNBAN = "Unban"
+const USERS_HEADING = "Users"
+const RECORDS_HEADING = "Endpoint Usage"
+const METHOD_HEADING = "Method"
+const ROUTE_HEADING = "Endpoint"
+const COUNT_HEADING = "Count"
+
 
 // index
 const TITLE_INDEX = "Persona Maker"

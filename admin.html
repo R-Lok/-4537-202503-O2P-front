@@ -22,17 +22,31 @@
     <div id="nav"></div>
     <div class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="text-center">
-            <h3>
-            </h3>
+            <h1 id="header">
+            </h1>
+            <h3 id="users-heading"></h3>
             <table class="table">
-                <thead>
+                <thead id="users-head">
                   <tr>
-                    <th scope="col" id="email"></th>
-                    <th scope="col" id="api_tokens"></th>
-                    <th scope="col" id="ban_unban"></th>
+                    <th scope="col" id="email-heading"></th>
+                    <th scope="col" id="role-heading"></th>
+                    <th scope="col" id="api-usage-heading"></th>
+                    <th scope="col" id="ban-heading"></th>
                   </tr>
                 </thead>
                 <tbody id="user-list">
+                </tbody>
+            </table>
+            <h3 id="records-heading"></h3>
+            <table class="table">
+                <thead id="records-head">
+                    <tr>
+                        <th scope="col" id="method-heading"></th>
+                        <th scope="col" id="endpoint-heading"></th>
+                        <th scope="col" id="records-count-heading"></th>
+                    </tr>
+                </thead>
+                <tbody id="records-list">
                 </tbody>
             </table>
         </div>
