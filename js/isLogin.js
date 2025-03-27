@@ -7,19 +7,22 @@ async function isLogin() {
         const res = await fetch(`${BACK_URL}/isLogin`, req)
 
         if (!res.ok) {
-            handle_res_error(res.status)
             return false
         }
         return true
     } catch (e) {
-        window.location.href = './login.html'
-        return false
+        alert(`${e.name} : ${e.message}`)
+        return null
     }
 }
 
-isLogin().then((isLoggedIn) => {
-    if (isLoggedIn) document.body.style.display = 'block'
-})
+// isLogin().then((isLoggedIn) => {
+//     if (isLoggedIn === true) {
+//         document.body.style.display = 'block'
+//     } else if (isLoggedIn === false) {
+//         window.location.href = './login.html'
+//     }
+// })
 
 function handle_res_error(statusCode) {
     switch (statusCode) {

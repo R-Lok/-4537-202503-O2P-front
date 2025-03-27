@@ -39,6 +39,16 @@ function displayTokenWarning() {
 }
 
 async function init() {
+    const isLoggedIn = await isLogin()
+    if(isLoggedIn === false) {
+        window.location.href='./login.html'
+        return
+    } else if (isLoggedIn === null) {
+        return
+    } else {
+        document.body.style.display = 'block'
+    }
+
     document.getElementById('start-btn').addEventListener('click', function() {
         window.location.href = './questions.html'
     })
