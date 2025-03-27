@@ -5,15 +5,22 @@ async function isAdmin() {
     }
 
     try {
-        const res = await fetch(`${BACK_URL}/admin`, req);
+        const res = await fetch(`${BACK_URL}/admin`, req)
 
         if (!res.ok) {
-            handle_res_error(res.status)
+            if (window.location.pathname.includes("/admin")) { // on admin page
+                handle_res_error(res.status)
+            } else if (res.status == 401) { // on all other pages
+                window.location.href = './login.html'
+            }
             return false
+        } else {
+            updateAdminNav()
         }
+
         return true
     } catch (e) {
-        window.location.href = './index.html';
+        window.location.href = './index.html'
         return false
     }
 }
