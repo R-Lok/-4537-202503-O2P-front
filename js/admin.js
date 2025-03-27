@@ -82,10 +82,13 @@ async function toggleBan(email, enabled) {
 }
 
 async function init() {
-    if (!(await isAdmin())) {
+    const userIsAdmin = await isAdmin()
+    if (userIsAdmin === false) {
         window.location.href = './403.html'
         return
-    }
+    } else if (userIsAdmin === null) {
+        return
+    } 
 
     document.body.style.display = 'block'
     const users = await getUsers()
