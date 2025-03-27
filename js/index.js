@@ -40,7 +40,7 @@ function displayTokenWarning() {
 
 async function init() {
     document.getElementById('start-btn').addEventListener('click', function() {
-        window.location.href = './questions'
+        window.location.href = './questions.html'
     })
 
     const tokens = await getApiTokens()
