@@ -106,19 +106,20 @@ function populateRecords(data) {
 
 async function toggleBan(email, enabled) {
     // const req = {
-    const endpoint = (enabled) ? "banUser" : "unBanUser"
+    // const endpoint = (enabled) ? "banUser" : "unBanUser"
+    const endpoint = "toggleBanUser"
     try {
-        const res = await fetch(`${BACK_URL}/admin/${endpoint}`, {
-            method: "POST", // TODO: ban/unban is PATCH
+        const res = await fetch(`${BACK_URL}/admin/${endpoint}?email=${email}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "email": email
+                "enable": !enabled
             }),
             credentials: 'include'
         })
-
+        
         if (!res.ok) {
             handle_res_error(res.status)
             return
@@ -126,7 +127,7 @@ async function toggleBan(email, enabled) {
 
         location.reload()
     } catch (err) {
-        alert(`${e.name}: ${e.message}`);
+        alert(`${err.name}: ${err.message}`);
         location.reload()
     }
 }
