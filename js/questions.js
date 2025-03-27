@@ -249,5 +249,17 @@ class QuizManager {
     }
 }
 
-const quizManager = new QuizManager();
-quizManager.startQuestions();
+async function init() {
+    const isLoggedIn = await isLogin()
+    if(isLoggedIn === false) {
+        window.location.href = './login.html'
+        return
+    } else if (isLoggedIn === null) {
+        return
+    }
+    document.body.style.display = 'block'
+    const quizManager = new QuizManager();
+    quizManager.startQuestions();
+}
+
+init()
