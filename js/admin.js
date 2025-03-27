@@ -134,6 +134,7 @@ async function toggleBan(email, enabled) {
 async function init() {
     if (!(await isAdmin())) {
         window.location.href = './403.html'
+        return
     }
 
     document.body.style.display = 'block'
