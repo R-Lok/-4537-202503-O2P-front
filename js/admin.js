@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("role-heading").textContent = ROLE
     document.querySelector("#api-usage-heading").textContent = API_TOKENS
     document.querySelector("#ban-heading").textContent = BAN_UNBAN
+    document.getElementById('users-heading').textContent = USERS_HEADING
+    document.getElementById('records-heading').textContent = RECORDS_HEADING
+    document.getElementById('method-heading').textContent = METHOD_HEADING
+    document.getElementById('endpoint-heading').textContent = ROUTE_HEADING
+    document.getElementById('records-count-heading').textContent = COUNT_HEADING
 })
 
 async function getUsers() {
@@ -25,6 +30,28 @@ async function getUsers() {
         populateUsers(data.msg)
     } catch (e) {
         alert(`${e.name}: ${e.message}`);
+    }
+}
+
+async function getRecords() {
+    const req = {
+        method: 'GET',
+        credentials: 'include'
+    }
+
+    try {
+        const res = await fetch(`${BACK_URL}/admin/records`, req)
+
+        if(!res.ok) {
+            handle_res_error(res.status)
+            return
+        }
+
+        const data  = await res.json()
+        populateRecords(data.msg)
+
+    } catch (error) {
+        alert(`${error.name}, ${error.message}`)
     }
 }
 
@@ -52,10 +79,31 @@ function populateUsers(users) {
                 </button>
             </td>
         `;
-
         // Append the new row to the userList table body
         userList.appendChild(row);
     });
+}
+
+function populateRecords(data) {
+
+    const tableBody = document.getElementById('records-list')
+    tableBody.replaceChildren()
+
+    data.forEach((entry) => {
+        const row = document.createElement('tr')
+
+        const method = document.createElement('td')
+        const endpt = document.createElement('td')
+        const count = document.createElement('td')
+
+        method.textContent = entry.method
+        endpt.textContent = entry.route
+        count.textContent = entry.count
+        
+        row.append(method, endpt, count)
+
+        tableBody.appendChild(row)
+    })
 }
 
 async function toggleBan(email, enabled) {
@@ -91,7 +139,8 @@ async function init() {
         return
     }
     document.body.style.display = 'block'
-    await getUsers()
+    getRecords()
+    getUsers()
 }
 
 init()
