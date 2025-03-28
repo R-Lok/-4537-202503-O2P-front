@@ -14,7 +14,9 @@ class PersonaManager {
             })
             .then(data => {
                 this.personas = data.msg;
-                this.displayAllPersonas(this.personas)
+                if(this.personas.length !== 0){
+                    this.displayAllPersonas(this.personas)
+                }
             })
             .catch(error => {
                 console.log(`${ERROR}`, error)
