@@ -131,7 +131,7 @@ class QuestionManager {
             const imageContainer = document.getElementById('image-container');
             const img = document.createElement('img');
             img.src = data;
-            img.alt = "Generated Image";
+            img.alt = GENERATED_ALT;
             imageContainer.innerHTML = '';
             imageContainer.appendChild(img);
         } else {
@@ -223,7 +223,7 @@ class QuizManager {
     }
 
     displayQuizzes(quizzes) {
-        const title = "Select a Quiz!";
+        const title = QUESTIONS_TITLE;
         const quizList = [];
         for(let i = 0; i < quizzes.length; i++) {
             quizList.push(quizzes[i].name);
@@ -244,7 +244,6 @@ class QuizManager {
 
         // start generating quizzes
         this.questionMan.getBatchOfQuestions();
-
         this.generateSubmitButton();
     }
 }

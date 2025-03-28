@@ -32,7 +32,7 @@ async function getApiTokens() {
 
 function displayTokenWarning() {
     let p = document.createElement("p");
-    p.textContent = "Warning: NO MORE TOKENS"
+    p.textContent = NO_TOKENS_MESSAGE
     p.style.fontSize = "40px";
     p.style.color = "red";
     document.getElementById("content").append(p);

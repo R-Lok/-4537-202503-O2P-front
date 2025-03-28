@@ -10,6 +10,7 @@ document.getElementById("nav").innerHTML = `
             <div class="navbar-nav">
                 <a class="nav-link" href="./index.html">${HOME}</a>
                 <a class="nav-link" href="./questions.html">${QUIZ}</a>
+                <a class="nav-link" href="./persona.html">${PERSONA}</a>
             </div>
             <button id="logout-btn" class="btn btn-danger ms-auto">${LOGOUT}</button>
         </div>
@@ -53,6 +54,7 @@ function updateAdminNav() {
                     <div class="navbar-nav">
                         <a class="nav-link" href="./index.html">${HOME}</a>
                         <a class="nav-link" href="./questions.html">${QUIZ}</a>
+                        <a class="nav-link" href="./persona.html">${PERSONA}</a>
                         <a class="nav-link" href="./admin.html">${ADMIN}</a>
                     </div>
                     <button id="logout-btn" class="btn btn-danger ms-auto">${LOGOUT}</button>

@@ -1,7 +1,6 @@
 class PersonaManager {
     constructor() {
         this.personas = [];
-        this.personaIndex = 0;
     }
 
     getAllPersonas() {
@@ -22,8 +21,20 @@ class PersonaManager {
             })
     }
 
+    deletePersona(fileName) {
+        fetch(`${BACK_URL}/api/deletePersona?imageName=${encodeURIComponent(fileName)}`, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+        .then(response => response.json)
+        .then(data => {
+            console.log(data);
+            window.location.reload();
+        })
+        .catch(error => console.error(`${ERROR}`, error));
+    }
+
     fetchImage(fileName, index) {
-        console.log(fileName);
         fetch(`${BACK_URL}/api/personaImage?fileName=${encodeURIComponent(fileName)}`, {
             method: 'GET',
             credentials: 'include'
@@ -33,14 +44,14 @@ class PersonaManager {
             const imageUrl = URL.createObjectURL(blob);
             this.displayImage(imageUrl, index);
         })
-        .catch(error => console.error('Error fetching image:', error));
+        .catch(error => console.error(`${ERROR}`, error));
     }
 
     displayAllPersonas(items) {
         let index = 0;
         personaList.innerHTML = `
                 <div class="modal-content">
-                    <div id="quizzes-container">
+                    <div id="persona-container">
                             ${items.map(item => `
                                     <p>${item.persona.persona.Name}</p>
                                     <div id="img${index}"></div>
@@ -57,8 +68,8 @@ class PersonaManager {
 
         index = 0;
         items.forEach((item) => {
-            this.fetchImage(item.pathToImage, index);
-            this.displayDeleteButton(index)
+            this.fetchImage(item.pathToImage, index)
+            this.displayDeleteButton(item.pathToImage, index)
             index++;
         });
     }
@@ -66,21 +77,21 @@ class PersonaManager {
     displayImage(image, index) {
         const img = document.createElement("img");
         img.src = image;  
-        img.alt = "Persona Image"; 
+        img.alt = PERSONA_IMG_ALT; 
         img.style.width = "200px"; 
         img.style.height = "200px";
         document.getElementById("img"+index).appendChild(img);
     }
 
-    displayDeleteButton(index) {
+    displayDeleteButton(fileName, index) {
         let deleteButton = document.createElement("button");
-        deleteButton.id = "delete-btn";
+        deleteButton.id = "delete-btn"+index;
         deleteButton.textContent = "Delete";
-
         document.getElementById("del"+index).append(deleteButton);
 
-        document.getElementById("delete-btn").addEventListener("click", () => {
-
+        document.getElementById("delete-btn"+index).addEventListener("click", () => {
+            // delete endpoint
+            this.deletePersona(fileName)
         });
     }
 
@@ -95,8 +106,9 @@ async function init() {
         return
     }
     document.body.style.display = 'block'
+    document.getElementById("title").innerHTML = PERSONA_TITLE
     const personaManager = new PersonaManager();
-personaManager.getAllPersonas();
+    personaManager.getAllPersonas();
 }
 
 init()
