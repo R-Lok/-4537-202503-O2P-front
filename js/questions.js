@@ -211,11 +211,26 @@ class QuizManager {
         document.getElementById("sub-btn").append(submitButton);
         submitButton.style.visibility = "hidden";
 
+        document.getElementById("err-msg").style.visibility = "visible"
+
         document.getElementById("submit-btn").addEventListener("click", () => {
+            if(this.validateAnswers()) {
             if (this.selectedQuiz) {
                 this.questionMan.submitAnswers(this.selectedQuiz);
             }
+        }
         });
+    }
+
+    validateAnswers() {
+        for (let i = 0; i < this.questionMan.answers.length; i++) {
+            if (this.questionMan.answers[i].answer === "") {
+                document.getElementById("err-msg").innerHTML = VERIFY_ANSWERS
+                document.getElementById("err-msg").style.visibility = "visible"
+                return false;
+            }
+        }
+        return true;
     }
 
     displayQuizzes(quizzes) {
