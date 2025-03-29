@@ -24,6 +24,7 @@ const QUESTIONS = "Questions"
 const STATUS = "Status"
 const GENERATED_ALT = "generated image"
 const QUESTIONS_TITLE = "Select a Quiz!"
+const VERIFY_ANSWERS = "Answer all questions"
 
 // persona view
 const PERSONA_TITLE = "My Personas"
