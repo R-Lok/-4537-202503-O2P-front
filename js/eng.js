@@ -42,6 +42,10 @@ const EMAIL_LABEL = "Email address"
 const PASSWORD_LABEL = "Password"
 const SIGNUP_LABEL = "Sign Up"
 
+//email warning
+const EMAIL_WARNING = "Email must be a valid email"
+const PASSWORD_WARNING = "Password cannot be empty"
+
 // admin
 const ADMIN = "Admin"
 const EMAIL = "Email"
