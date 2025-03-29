@@ -4,13 +4,12 @@ const env = {
     prod: "https://fortunedgalab.xyz"
 }
 
-// const BACK_URL = env[window.location.hostname.includes("personamakerdev") 
-//     ? "dev" 
-//     : window.location.hostname.includes("personamaker") 
-//     ? "prod" 
-//     : "local"
-// ]
-const BACK_URL = "https://fortunedgalab.xyz/dev"
+const BACK_URL = env[window.location.hostname.includes("personamakerdev") 
+    ? "dev" 
+    : window.location.hostname.includes("personamaker") 
+    ? "prod" 
+    : "local"
+]
 console.log(window.location.hostname)
 console.log(BACK_URL)
 
