@@ -16,7 +16,7 @@ submitBtn.addEventListener('click', (e) => {
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
 
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; //Regex obtained via CHATGPT
     if(!emailPattern.test(email)) {
         displayAlert(EMAIL_WARNING, true)
         return
