@@ -33,6 +33,7 @@ async function logout() {
             let msg = await res.json()
             msg = msg.msg
             alert(`${msg}`)
+            window.location.href = './login.html'
             return
         }
         window.location.href = './login.html'
