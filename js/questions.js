@@ -1,15 +1,14 @@
-document.addEventListener("DOMContentLoaded", () => {
-    document.title = QUIZ
-    document.querySelector("#questions-title").textContent = QUESTIONS.toUpperCase()
-})
 
 function checkAuth(response) {
-    console.log(`Status: ${response.status}`)
     if (response.status == 401) {
         window.location.href = './login'
     }        
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    document.title = QUIZ
+    document.querySelector("#questions-title").textContent = QUESTIONS.toUpperCase()
+})
 class QuestionManager {
     constructor() {
         this.questionBatch = []; // array to store all questions as object
@@ -131,7 +130,7 @@ class QuestionManager {
             const imageContainer = document.getElementById('image-container');
             const img = document.createElement('img');
             img.src = data;
-            img.alt = "Generated Image";
+            img.alt = GENERATED_ALT;
             imageContainer.innerHTML = '';
             imageContainer.appendChild(img);
         } else {
@@ -194,7 +193,6 @@ class QuizManager {
 
                 document.querySelectorAll(".quiz-item").forEach(item => {
                     item.addEventListener("click", function() {
-                        console.log(this.textContent);
                         quizModal.remove();
                         res(this.textContent);
                     })
@@ -216,14 +214,12 @@ class QuizManager {
         document.getElementById("submit-btn").addEventListener("click", () => {
             if (this.selectedQuiz) {
                 this.questionMan.submitAnswers(this.selectedQuiz);
-            } else {
-                console.log("No quiz selected yet!");
             }
         });
     }
 
     displayQuizzes(quizzes) {
-        const title = "Select a Quiz!";
+        const title = QUESTIONS_TITLE;
         const quizList = [];
         for(let i = 0; i < quizzes.length; i++) {
             quizList.push(quizzes[i].name);
@@ -244,7 +240,6 @@ class QuizManager {
 
         // start generating quizzes
         this.questionMan.getBatchOfQuestions();
-
         this.generateSubmitButton();
     }
 }
