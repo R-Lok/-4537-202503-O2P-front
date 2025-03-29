@@ -32,7 +32,7 @@ async function getApiTokens() {
 
 function displayTokenWarning() {
     let p = document.createElement("p");
-    p.textContent = "Warning: NO MORE TOKENS"
+    p.textContent = NO_TOKENS_MESSAGE
     p.style.fontSize = "40px";
     p.style.color = "red";
     document.getElementById("content").append(p);
@@ -56,8 +56,10 @@ async function init() {
     const tokens = await getApiTokens()
     api_tokens.textContent += tokens
     if(tokens <= 0) {
+        console.log("no tokens");
         displayTokenWarning();
     }
+    
 }
 
 init()

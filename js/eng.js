@@ -15,12 +15,19 @@ console.log(BACK_URL)
 
 const HOME = "Home"
 const QUIZ = "Quiz"
+const PERSONA = "My Personas"
 const LOGOUT = "Logout"
 const SUBMIT = "Submit"
 
 // questions
 const QUESTIONS = "Questions"
 const STATUS = "Status"
+const GENERATED_ALT = "generated image"
+const QUESTIONS_TITLE = "Select a Quiz!"
+
+// persona view
+const PERSONA_TITLE = "My Personas"
+const PERSONA_IMG_ALT = "Persona Image"
 
 // register
 const REGISTRATION = "Registration"
@@ -55,6 +62,7 @@ const TITLE_INDEX = "Persona Maker"
 const DESCRIPTION_INDEX = "Discover your persona!"
 const START_ADV = "Start Adventure"
 const TOKENS_REMAINING = "API Calls Remaining: "
+const NO_TOKENS_MESSAGE = "Warning: NO MORE TOKENS"
 
 // 403
 const TITLE_403 = "403 Not Authorised"
