@@ -1,6 +1,5 @@
 
 function checkAuth(response) {
-    console.log(`Status: ${response.status}`)
     if (response.status == 401) {
         window.location.href = './login'
     }        
@@ -194,7 +193,6 @@ class QuizManager {
 
                 document.querySelectorAll(".quiz-item").forEach(item => {
                     item.addEventListener("click", function() {
-                        console.log(this.textContent);
                         quizModal.remove();
                         res(this.textContent);
                     })
@@ -216,8 +214,6 @@ class QuizManager {
         document.getElementById("submit-btn").addEventListener("click", () => {
             if (this.selectedQuiz) {
                 this.questionMan.submitAnswers(this.selectedQuiz);
-            } else {
-                console.log("No quiz selected yet!");
             }
         });
     }
