@@ -1,7 +1,7 @@
 const env = {
-    local: "http://localhost:3000",
-    dev: "https://fortunedgalab.xyz/dev",
-    prod: "https://fortunedgalab.xyz"
+    local: "http://localhost:3000/v1",
+    dev: "https://fortunedgalab.xyz/dev/v1",
+    prod: "https://fortunedgalab.xyz/v1"
 }
 
 const BACK_URL = env[window.location.hostname.includes("personamakerdev") 
