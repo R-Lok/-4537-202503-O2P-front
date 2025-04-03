@@ -133,6 +133,14 @@ async function toggleBan(email, enabled) {
 }
 
 async function init() {
+    const isLoggedIn = await isLogin()
+    if (isLoggedIn === false) {
+        window.location.href = './login.html'
+        return
+    } else if (isLoggedIn === null) {
+        return
+    }
+
     const userIsAdmin = await isAdmin()
     if (userIsAdmin === false) {
         window.location.href = './403.html'
